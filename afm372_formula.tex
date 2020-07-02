@@ -1,0 +1,108 @@
+\documentclass[a4paper,10pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\titleformat*{\section}{\large\it}
+
+\begin{document}
+\begin{center}
+    \large\bfseries AFM 372 \qquad Formulas for Exams \qquad Spring 2020
+\end{center}
+\section*{Capital Budgeting}
+\begin{itemize}
+    \item Capital cost of allowance
+\end{itemize}
+
+\section*{Fundamentals of Capital Budgeting}
+\begin{itemize}
+    \item UCC and CAA for year $t$, and \text{CCA$_t =$ UCC$_t\times d$}
+    \[\text{UCC}_t=
+    \begin{cases}
+        \text{CapEx}/2&\text{for $t=1$} \\
+        \text{CapEx}\times(1-d/2)\times(1-d)^{t-2}&\text{for $t\geq1$}
+    \end{cases}\]
+    
+    \item Free Cash Flow
+    \begin{align*}
+        \text{FCF}_t=&(\text{Revenues}_t-\text{Costs}_t)\times(1-\tau_t)-\text{CapEx}_t-\Delta\text{NWC}_t\\&+\tau_c\times\text{CCA}_t
+    \end{align*}
+    
+    \item PV of CCA tax shields
+    \[\text{PV}_\text{CCA tax shields} = \dfrac{\text{CapEx}\times d \times \tau_c}{r+d}\times\left[\dfrac{1+r/2}{1+r}\right]\]
+    
+    \item PV of lost CCA tax shields
+    \[\text{PV}_{\text{lost CCA tax shield}}=\dfrac{\min(\text{Sale Price},\text{CapEx})\times d\times \tau_c}{r+d}\times\dfrac{1}{(1+r)^t}\]
+\end{itemize}
+
+\section*{Estimating the Cost of Capital}
+\begin{itemize}
+    \item CAPM
+    \[r_i=r_f+\beta_i\times \underbrace{(E[R_{Mkt}]-r_f)}_{\text{market risk premium}} \]
+    
+    \item expected return of the bond is 
+    \begin{flalign*}
+        r_D=(1-p)y+p(y-L)&=y-pL\\&=\textrm{Yield to Maturity $-$ Prob(default)}\times\textrm{Expected Loss Rate}
+    \end{flalign*}
+    
+    \item the relationship between different ratios
+    \[\dfrac{D}{E}=x \implies \dfrac{E}{V}=\dfrac{1}{x+1} \implies \dfrac{D}{V}=1-\dfrac{E}{V}\]
+    
+    \item asset or unlevered cost of capital, where $D$ is the net debt (also known as pretax WACC)
+    \[r_U=\dfrac{E}{E+D}r_E+\dfrac{D}{E+D}r_D\]
+    
+    \item asset or unlevered beta
+    \[\beta_U=\dfrac{E}{E+D}\beta_E+\dfrac{D}{E+D}\beta_E\]
+    
+    \item weighted average cost of capital with firm's corporate tax rate $\tau_C$
+    \[r_{wacc}=\dfrac{E}{E+D}r_E+\dfrac{D}{E+D}r_D(1-\tau_C)\]
+    \end{itemize}
+
+\section*{Capital Structure of a Perfect Market}
+\begin{itemize}
+    \item cost of capital of levered equity
+    \[r_E=r_U+\dfrac{D}{E}(r_U-r_D)\]
+    
+    \item In a setting of perfect capital markets, there are no taxes, so the firm's WACC and unlevered cost of capital conincide
+    \[r_{wacc}=r_U=r_A\]
+    
+    \item a firm's unlevered or asset beta is the weighed average of its equity and debt beta
+    \[\beta_U=\dfrac{E}{E+D}\beta_E+\dfrac{D}{E+D}\beta_D\]
+    
+    \item a firm's equity beta 
+    \[\beta_E=\beta_U+\dfrac{D}{E}(\beta_U-\beta_E)\]
+\end{itemize}
+
+\clearpage
+
+\section*{Debt and Taxes}
+\begin{itemize}
+    \item Interest Tax Shield in the all-equity case the total amount available for all investors is $(\mathrm{EBIT}-\mathrm{Interest})(1-\tau_c)$, but in the levered case it is
+    \begin{align*}
+    &\underbrace{(\mathrm{EBIT}-\mathrm{Interest})(1-\tau_c)}_{\text{Available to shareholders}}+ \underbrace{\mathrm{Interest}}_{\text{Paid to debtholders}}\\
+    =&\,\underbrace{\mathrm{EBIT}(1-\tau_c)}_{\substack{\text{Cash flows to investors}\\\text{ without leverage}}}+\underbrace{\mathrm{Interest}\times\tau_c}_{\text{Interest tax shield}}
+    \end{align*}
+    
+    \item the total value of the levered firm exceeds the value of the firm without leverage due to the PV of the tax savings from debt with corporate taxes
+    \[V^L=V^U+\mathrm{PV}(\textrm{Interest tax shield})\]
+    
+    \item PV of the Interest tax shield given permanent debt
+    \begin{align*}
+        \mathrm{PV}(\text{Interst tax shield}) &= \text{PV}(\tau_c \times \text{Future interest payments})\\&=\tau_c\times\text{PV}(\text{Future interest payments})\\&=\tau_c \times D
+    \end{align*}
+    
+    \item the weighted average cost of capital given after-tax interest rate
+    \begin{align*}
+        r_{wacc} &= \dfrac{E}{E+D}r_E+\dfrac{D}{E+D}r_D(1-\tau_c)\\&=\underbrace{\dfrac{E}{E+D}r_E+\dfrac{D}{E+D}r_D}_{\text{Pretax WACC}}-\underbrace{\dfrac{D}{E+D}r_D\tau_c}_{\substack{\text{Decrease from }\\ \text{interest tax shield}}}
+    \end{align*}
+    
+    \item the effective tax advantage of debt is 
+    \[\tau^{*}=1-\dfrac{(1-\tau_c)(1-\tau_e)}{(1-\tau_i)}\]
+\end{itemize}
+\section*{Financial Distress, Managerial Incentives, and Information}
+\begin{itemize}
+    \item the total value of a levered firm equals the value of the firm without leverage plus the PV of the tax savings from debt, less the PV of financial distress costs
+    \[V^L=V^U+\text{PV}(\text{Interest tax shield})-\text{PV}(\text{Financial distress costs})\]
+\end{itemize}
+
+\end{document}
