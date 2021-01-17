@@ -1,0 +1,200 @@
+% Author: Xuntian Lin
+% Data updated: Jan 17, 2021
+% Usage: For customized math typesetting
+
+% Usedful page setting
+%\usepackage[parfill]{parskip}
+%\usepackage{lipsum} 
+
+% This can help you show the frame lines
+%\usepackage{showframe,marginnote}
+
+% important math tools
+\usepackage{amsmath,amsthm,amssymb,bm}
+%\usepackage{mathtools}%
+
+% graphics
+\usepackage{xparse, etoolbox}
+%\usepackage[ISO]{diffcoeff}
+
+%this is important
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+%this package allows no indentation
+\usepackage{lipsum} % just for context
+
+%\DeclareMathAccent{\widebar}{0}{mathx}{"73}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+%\titleformat*{\section}{\Large}
+
+
+%-----------------WIDEBAR------------
+% ------Special symbol setttings-----
+\makeatletter
+\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+\newcommand*\widebar[1]{%
+  \begingroup
+  \def\mathaccent##1##2{%
+    \rel@kern{0.8}%
+    \overline{\rel@kern{-0.8}\macc@nucleus\rel@kern{0.2}}%
+    \rel@kern{-0.2}%
+  }%
+  \macc@depth\@ne
+  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+  \macc@set@skewchar\relax
+  \let\mathaccentV\macc@nested@a
+  \macc@nested@a\relax111{#1}%
+  \endgroup
+}
+
+
+% operator names
+\DeclareMathOperator{\prob}{P}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\expe}{E}
+\DeclareMathOperator{\normal}{N}
+\DeclareMathOperator{\se}{SE}
+
+%\tcbuselibrary{theorems}
+%------------------COLOUR-------------------
+%-------------------------------------------
+%here is the style of the theorems
+\usepackage{xcolor}
+\usepackage{framed,pstricks,tikz}
+\usepackage{thmtools}
+
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{bole}{rgb}{0.47, 0.27, 0.23}
+%------------------THEOREM------------------
+%------------------------------------------
+\theoremstyle{definition}
+%\newtheorem*{definition}{Definition}
+%\newtheorem*{example}{Example}
+\newlength{\spacelength}
+\settowidth{\spacelength}{\normalfont\ }
+
+
+% definitions
+\declaretheoremstyle[
+    name=Definition,
+    headfont=\bfseries\color{cadmiumgreen},
+    headformat={%
+        \makebox[-1.5em][r]{\NAME\ \NUMBER\ }\setbox0\hbox{\ }\hspace{-\the\wd0}\NOTE%
+    },
+    headpunct={},
+    postheadspace=2.1em,
+    preheadhook={\vskip10pt},
+    postfoothook={\vskip8pt},
+    mdframed={
+        hidealllines=true,
+        backgroundcolor={yellow!30},
+        innertopmargin=5pt,
+        innerbottommargin=8pt,
+        %nobreak=true,
+        splittopskip=1.5\topskip
+        },
+]{defstyle}
+
+% summary
+\declaretheoremstyle[
+    name=Summary,
+    headfont=\large\bfseries\color{bole},
+    headpunct={},
+    notefont=\bfseries,
+    postheadspace=1.5em,
+    preheadhook={\vskip10pt},
+    postfoothook={\vskip8pt},
+    mdframed={
+        hidealllines=true,
+        backgroundcolor={green!15},
+        innertopmargin=5pt,
+        innerbottommargin=8pt,
+        splittopskip=1.5\topskip}
+]{summarystyle}
+
+% example
+\declaretheoremstyle[
+    name=Example,
+    headfont=\bfseries\color{teal},
+    headformat={%
+        \makebox[-1.5em][r]{\NAME\ \NUMBER\ }\setbox0\hbox{\ }\hspace{-\the\wd0}\NOTE%
+    },
+    headpunct={},
+    postheadspace=2.1em,
+    preheadhook={\vskip10pt},
+    postfoothook={\vskip8pt},
+    mdframed={
+        hidealllines=true,
+        backgroundcolor={teal!18},
+        innertopmargin=5pt,
+        innerbottommargin=8pt,
+        splittopskip=1.5\topskip}
+]{examplestyle}
+
+% solution
+\declaretheoremstyle[
+    name=Solution:,
+    headformat={%
+        \makebox[4.55em][r]{\NAME\ \NUMBER\ }\setbox0\hbox{\ }\hspace{-\the\wd0}\NOTE%
+    },
+    headfont=\bfseries,
+    headpunct={},
+    notefont=\bfseries,
+    %postheadspace=4.4em,
+]{solutionstyle}
+
+% proof
+\declaretheoremstyle[
+    name=Proof:,
+    headformat={%
+        \makebox[3.35em][r]{\NAME\ \NUMBER\ }\setbox0\hbox{\ }\hspace{-\the\wd0}\NOTE%
+    },
+    headfont=\bfseries,
+    headpunct={},
+    notefont=\bfseries,
+    %postheadspace=4.4em,
+]{proofstyle}
+
+\declaretheoremstyle[
+    name=Summary,
+    headfont=\bfseries\color{bole},
+    headpunct={},
+    notefont=\bfseries,
+    postheadspace=1.5em,
+    preheadhook={\vskip6pt},
+    postfoothook={\vskip8pt},
+    mdframed={
+        hidealllines=true,
+        backgroundcolor={bole!12},
+        innertopmargin=5pt,
+        innerbottommargin=8pt}
+]{summarystyle}
+
+
+\declaretheorem[
+    style=summarystyle,
+    numbered=no
+]{summary}
+
+\declaretheorem[
+    style=defstyle,
+    numberwithin=section
+]{defn}
+
+\declaretheorem[
+    style=examplestyle,
+    numberwithin=section
+]{example}
+
+\declaretheorem[
+    style=solutionstyle,
+    numbered=no
+]{soln}
+
+\declaretheorem[
+    style=proofstyle,
+    numbered=no
+]{prf}
